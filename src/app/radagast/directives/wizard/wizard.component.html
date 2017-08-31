@@ -1,4 +1,3 @@
-activeStep: {{vm.activeStep}}
 <ul class="wizard-step-headers">
     <li class="step-header" ng-repeat="step in vm.steps" ng-class="{'step-active': step.order == vm.activeStep}">{{step.name}} {{step.order}}</li>
 </ul>

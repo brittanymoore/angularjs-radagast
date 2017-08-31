@@ -2,11 +2,12 @@ import Step from './../../step';
 
 class WizardController {
 
-    constructor(radagastService, $rootScope, $timeout) {
-
+    constructor(radagastService, $rootScope, $timeout, $scope) {
+       
         this.radagastService = radagastService.getInstance();
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
+        this.$scope = $scope;
 
         this.steps = [];
         this.activeStep = 1;
@@ -24,7 +25,6 @@ class WizardController {
     stepForward() {
         if (this.activeStep < this.steps.length) {
             this.activeStep = this.activeStep + 1;
-            console.log(this.activeStep);
             this.goToActiveStep();
         }
     }
@@ -41,11 +41,11 @@ class WizardController {
     }
 
     publishActiveStep(stepIndex) {
-        this.$rootScope.$emit('active-step', stepIndex);
+        this.$scope.$broadcast('active-step', stepIndex);
     }
 
     subscribeToActiveStep(scope, callback) {
-        const deregister = this.$rootScope.$on('active-step', (...args) => {
+        const deregister = scope.$on('active-step', (...args) => {
             this.$timeout(() => { callback(...args); }, 0);
         });
         scope.$on('$destroy', () => {
@@ -55,7 +55,7 @@ class WizardController {
 
 }
 
-WizardController.$inject = [ 'radagastService', '$rootScope', '$timeout' ];
+WizardController.$inject = [ 'radagastService', '$rootScope', '$timeout', '$scope' ];
 
 import './wizard.component.scss';
 
@@ -67,6 +67,7 @@ const wizardDirective = function() {
         controller: WizardController,
         controllerAs: 'vm',
         bindToController: true,
+        scope: true,
         transclude: true
     };
 

@@ -29,7 +29,6 @@ const wizardStepDirective = function() {
             $ctrl.addStep(controller.name, controller.order);
             $ctrl.subscribeToActiveStep($scope, (event, activeStep) => {
                 controller.activeStep = activeStep;
-                console.log('subscription', activeStep);
             });
 
         }
