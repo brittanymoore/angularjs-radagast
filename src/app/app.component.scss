@@ -1,0 +1,10 @@
+label {
+    display: block;
+    &:not(:last-child) {
+        padding-bottom: 5px;
+    }
+}
+
+div.form-group {
+    padding: 10px 0;
+}

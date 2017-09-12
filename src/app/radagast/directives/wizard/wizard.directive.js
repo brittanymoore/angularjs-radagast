@@ -3,7 +3,7 @@ import Step from './../../step';
 class WizardController {
 
     constructor(radagastService, $rootScope, $timeout, $scope) {
-       
+
         this.radagastService = radagastService.getInstance();
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
@@ -46,7 +46,9 @@ class WizardController {
 
     subscribeToActiveStep(scope, callback) {
         const deregister = scope.$on('active-step', (...args) => {
-            this.$timeout(() => { callback(...args); }, 0);
+            this.$timeout(() => {
+                callback(...args);
+            }, 0);
         });
         scope.$on('$destroy', () => {
             deregister();

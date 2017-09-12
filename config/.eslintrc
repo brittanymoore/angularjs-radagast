@@ -17,7 +17,6 @@
     "rules": {
         // best practices
         "block-scoped-var": 2,
-        "class-methods-use-this": 2,
         "curly": [2, "all"],
         "default-case": 2,
         "eqeqeq": 2,
