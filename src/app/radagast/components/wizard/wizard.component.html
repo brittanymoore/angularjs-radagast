@@ -1,0 +1,10 @@
+<ul class="wizard-step-headers">
+    <li ng-repeat="step in vm.steps track by $index" ng-class="{'active': step.order == vm.activeStep}">
+        <a href="#" ng-click="vm.goToStep($index+1)">
+            {{step.name}} {{step.order}}
+        </a>
+    </li>
+</ul>
+<div class="wizard-content">
+    <ng-transclude></ng-transclude>
+</div>

@@ -1,4 +1,4 @@
-const wizardNextDirective = function($rootScope) {
+export function wizardNextDirective() {
 
     return {
         restrict: 'A',
@@ -8,7 +8,7 @@ const wizardNextDirective = function($rootScope) {
         },
         link: function($scope, $element, $attrs, $ctrl) {
 
-            $element.bind('click', (event) => {
+            $element.bind('click', (_event) => {
                 const passThrough = ($scope.beforeNext) ? $scope.beforeNext() : true;
                 if (passThrough) {
                     $ctrl.stepForward();
@@ -19,7 +19,3 @@ const wizardNextDirective = function($rootScope) {
     };
 
 };
-
-wizardNextDirective.$inject = [ '$rootScope' ];
-
-export default wizardNextDirective;

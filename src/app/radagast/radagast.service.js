@@ -1,4 +1,4 @@
-class RadagastService {
+export class RadagastService {
 
     constructor($rootScope) {
 
@@ -33,7 +33,3 @@ class RadagastService {
     }
 
 }
-
-RadagastService.$inject = [ '$rootScope' ];
-
-export default RadagastService;

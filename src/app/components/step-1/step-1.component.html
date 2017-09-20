@@ -3,11 +3,21 @@
 <ng-form name="step1">
 
     <div class="form-group">
-        <label>First Name: <input type="text" ng-model="step1.firstName" required /></label>
-        <label>Last Name: <input type="text" ng-model="step1.lastName" required /></label>  
+        <div class="form-field">
+            <label for="firstName">First Name:</label>
+            <div>
+                <input type="text" id="firstName" ng-model="step1.firstName" required />
+            </div>
+        </div>
+        <div class="form-field">
+            <label for="lastName">Last Name:</label>
+            <div>
+                <input type="text" id="lastName" ng-model="step1.lastName" required />
+            </div>
+        </div>
     </div>
-    <div>
-        <button type="button" ng-disabled="step1.$invalid" rad-next>Next</button>
+    <div class="wizard-buttons">
+        <button type="button" rad-next>Next</button>
     </div>
 
 </ng-form>

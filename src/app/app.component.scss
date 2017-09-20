@@ -1,10 +1,35 @@
-label {
-    display: block;
-    &:not(:last-child) {
-        padding-bottom: 5px;
-    }
-}
+.form-group {
 
-div.form-group {
-    padding: 10px 0;
+    width: 100%;
+
+    & .form-field {
+
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        & > * {
+
+            display: inline-block;
+
+            &:first-child {
+                width: 15%;
+            }
+
+            &:last-child {
+                flex-grow: 1;
+                & input {
+                    min-width: 200px;
+                    padding: 2px 5px;
+                    border: 1px solid #ababab;
+                    border-radius: 4px;
+                    font-family: inherit;
+                    font-size: inherit;
+                }
+            }
+
+        }
+
+    }
+
 }

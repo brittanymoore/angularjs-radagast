@@ -1,5 +1,5 @@
-const wizardPreviousDirective = function() {
-    
+export function wizardPreviousDirective() {
+
     return {
         restrict: 'A',
         require: '^radWizard',
@@ -8,7 +8,7 @@ const wizardPreviousDirective = function() {
         },
         link: function($scope, $element, $attrs, $ctrl) {
 
-            $element.bind('click', (event) => {
+            $element.bind('click', (_event) => {
                 const passThrough = ($scope.beforeNext) ? $scope.beforeNext() : true;
                 if (passThrough) {
                     $ctrl.stepBackward();
@@ -19,7 +19,3 @@ const wizardPreviousDirective = function() {
     };
 
 };
-
-wizardPreviousDirective.$inject = [];
-
-export default wizardPreviousDirective;

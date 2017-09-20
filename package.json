@@ -11,7 +11,7 @@
     "scripts": {
         "build": "webpack --env=dev",
         "lint": "eslint src/**/*.js -c ./config/.eslintrc",
-        "start": "webpack-dev-server --env=dev --open --hot"
+        "start": "webpack-dev-server --env=dev --progress --open"
     },
     "dependencies": {
         "@uirouter/angularjs": "1.0.6",

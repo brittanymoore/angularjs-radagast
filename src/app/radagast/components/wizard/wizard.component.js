@@ -2,10 +2,9 @@ import Step from './../../step';
 
 class WizardController {
 
-    constructor(radagastService, $rootScope, $timeout, $scope) {
+    constructor(radagastService, $timeout, $scope) {
 
         this.radagastService = radagastService.getInstance();
-        this.$rootScope = $rootScope;
         this.$timeout = $timeout;
         this.$scope = $scope;
 
@@ -16,6 +15,12 @@ class WizardController {
 
     addStep(name, order) {
         this.steps.push(new Step(name, order));
+    }
+
+    goToStep(index) {
+        console.log(index);
+        this.activeStep = index;
+        this.goToActiveStep();
     }
 
     goToActiveStep() {
@@ -57,24 +62,12 @@ class WizardController {
 
 }
 
-WizardController.$inject = [ 'radagastService', '$rootScope', '$timeout', '$scope' ];
-
 import './wizard.component.scss';
 
-const wizardDirective = function() {
-
-    return {
-        restrict: 'E',
-        template: require('./wizard.component.html'),
-        controller: WizardController,
-        controllerAs: 'vm',
-        bindToController: true,
-        scope: true,
-        transclude: true
-    };
-
+export const WizardComponent = {
+    template: require('./wizard.component.html'),
+    controller: WizardController,
+    controllerAs: 'vm',
+    bindings: { },
+    transclude: true
 };
-
-wizardDirective.$inject = [];
-
-export default wizardDirective;
