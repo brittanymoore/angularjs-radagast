@@ -9,6 +9,26 @@ class RadagastMasterController {
         this.MOVE_STEP_MESSAGE = 'radagast-move-step';
 
         this.steps = [];
+        this.activeStep = 1;
+
+    }
+
+    $postLink() {
+        this.goToActiveStep();
+    }
+
+    goToActiveStep() {
+        this.publishMoveStep(this.activeStep);
+    }
+
+    stepForward() {
+        this.activeStep++;
+        this.goToActiveStep();
+    }
+
+    stepBack() {
+        this.activeStep--;
+        this.goToActiveStep();
     }
 
     addStep(name, order) {
@@ -32,10 +52,12 @@ class RadagastMasterController {
 
 }
 
+import './radagast-master.component.scss';
+
 export const RadagastMasterComponent = {
     template: require('./radagast-master.component.html'),
     controller: RadagastMasterController,
-    controllerAs: 'rad',
+    controllerAs: 'vm',
     bindings: { },
     transclude: true
 };

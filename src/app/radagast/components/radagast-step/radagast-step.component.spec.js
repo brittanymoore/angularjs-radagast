@@ -2,6 +2,7 @@ import RadagastModule from './../../radagast.module';
 
 class RadagastMasterMock {
     addStep() {}
+    subscribeToMoveStep() {}
 }
 
 describe('RadagastStepComponent', () => {
@@ -16,7 +17,7 @@ describe('RadagastStepComponent', () => {
     let $scope;
 
     beforeEach(() => {
-        angular.mock.inject(($componentController, $compile, $rootScope) => {
+        angular.mock.inject(($compile, $rootScope) => {
 
             parentController = new RadagastMasterMock();
 
@@ -45,6 +46,23 @@ describe('RadagastStepComponent', () => {
 
         expect(parentController.addStep).toHaveBeenCalledTimes(1);
         expect(parentController.addStep).toHaveBeenCalledWith(subjectController.name, subjectController.order);
+
+    });
+
+    it('should subscribe to parent controller on init', () => {
+
+        let callbackFunction;
+        spyOn(parentController, 'subscribeToMoveStep').and.callFake((event, callback) => {
+            callbackFunction = callback;
+        });
+
+        subjectController.$onInit();
+
+        expect(parentController.subscribeToMoveStep).toHaveBeenCalledTimes(1);
+        expect(parentController.subscribeToMoveStep).toHaveBeenCalledWith(subjectController.$scope, callbackFunction);
+
+        callbackFunction({}, 2);
+        expect(subjectController.activeStep).toBe(2);
 
     });
 

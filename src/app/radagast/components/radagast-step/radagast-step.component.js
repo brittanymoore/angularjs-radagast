@@ -1,16 +1,23 @@
 class RadagastStepController {
 
     constructor($scope) {
+
         this.$scope = $scope;
         this.activeStep;
+
         // bindings
         this.wizardController;
         this.name;
         this.order;
+        this.validateFn;
+
     }
 
     $onInit() {
         this.wizardController.addStep(this.name, this.order);
+        this.wizardController.subscribeToMoveStep(this.$scope, (_event, index) => {
+            this.activeStep = index;
+        });
     }
 
 }

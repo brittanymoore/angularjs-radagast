@@ -13,7 +13,7 @@ describe('RadagastMasterComponent', () => {
     let $timeout;
 
     beforeEach(() => {
-        angular.mock.inject(($componentController, $compile, $rootScope) => {
+        angular.mock.inject(($compile, $rootScope) => {
 
             subjectElement = angular.element(`<rad-wizard></rad-wizard>`);
             $compile(subjectElement)($rootScope.$new());
@@ -68,6 +68,23 @@ describe('RadagastMasterComponent', () => {
 
         expect(ticks).toBe(1);
         expect(moveIndex).toBe(3);
+
+    });
+
+    it('should display all steps', () => {
+
+        let elements;
+        subjectController.addStep('test', 1);
+        subjectController.addStep('test2', 2);
+
+        subjectController.$postLink();
+        $scope.$digest();
+
+        elements = subjectElement[0].querySelectorAll('.wizard-step-headers li');
+        expect(elements.length).toBe(2);
+
+        elements = subjectElement[0].querySelectorAll('.wizard-step-headers li.active');
+        expect(elements.length).toBe(1);
 
     });
 
