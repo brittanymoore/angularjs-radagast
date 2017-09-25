@@ -18,16 +18,14 @@ describe('RadagastStepComponent', () => {
     beforeEach(() => {
         angular.mock.inject(($componentController, $compile, $rootScope) => {
 
-            $scope = $rootScope.$new();
             parentController = new RadagastMasterMock();
 
             subjectElement = angular.element(`<rad-wizard-step></rad-wizard-step>`);
             subjectElement.data('$radWizardController', parentController);
-
-            $compile(subjectElement)($scope);
-            $scope.$digest();
+            $compile(subjectElement)($rootScope.$new());
 
             subjectController = subjectElement.controller('radWizardStep');
+            $scope = subjectController.$scope;
 
         });
     });

@@ -8,24 +8,19 @@ describe('RadagastMasterComponent', () => {
 
     let subjectElement;
     let subjectController;
+
     let $scope;
     let $timeout;
 
     beforeEach(() => {
-        angular.mock.inject(($componentController, $compile, $rootScope, _$timeout_) => {
+        angular.mock.inject(($componentController, $compile, $rootScope) => {
 
-            $scope = $rootScope.$new();
-            $timeout = _$timeout_;
-
-            // get controller
-            subjectController = $componentController('radWizard', {
-                $scope: $scope,
-                $timeout: $timeout
-            });
-
-            // get element
             subjectElement = angular.element(`<rad-wizard></rad-wizard>`);
-            $compile(subjectElement)($scope);
+            $compile(subjectElement)($rootScope.$new());
+
+            subjectController = subjectElement.controller('radWizard');
+            $scope = subjectController.$scope;
+            $timeout = subjectController.$timeout;
 
         });
     });
@@ -46,9 +41,10 @@ describe('RadagastMasterComponent', () => {
 
     it('should allow subcribers to move step', () => {
 
-        const $subScope = $scope.$new();
         let moveIndex = null;
-        subjectController.subscribeToMoveStep($subScope, (event, index) => {
+        const subScope = $scope.$new();
+
+        subjectController.subscribeToMoveStep(subScope, (event, index) => {
             moveIndex = index;
         });
 

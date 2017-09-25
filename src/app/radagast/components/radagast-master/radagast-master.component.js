@@ -1,7 +1,8 @@
 class RadagastMasterController {
 
-    constructor($scope, $timeout) {
+    constructor($rootScope, $scope, $timeout) {
 
+        this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$timeout = $timeout;
 
