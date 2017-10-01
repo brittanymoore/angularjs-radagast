@@ -14,7 +14,6 @@ export function RadagastNextDirective() {
 
             $element.bind('click', (_event) => {
                 const passThrough = ($scope.beforeNext) ? $scope.beforeNext() : true;
-                console.log($scope.beforeNext);
                 if (passThrough) {
                     $ctrl.wizardController.stepForward();
                 }

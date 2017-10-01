@@ -28,6 +28,7 @@
         "wrap-iife": 2,
         // variables
         "no-shadow": 2,
+        "no-unused-vars": [2, { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
         "no-use-before-define": 2,
         // stylistic issues
         "array-bracket-spacing": [2, "always"],

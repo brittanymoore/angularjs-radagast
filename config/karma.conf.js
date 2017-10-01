@@ -1,6 +1,9 @@
 module.exports = (config) => {
     config.set({
         basePath: '',
+        client: {
+            clearContext: false
+        },
         frameworks: [ 'jasmine' ],
         files: [
             { pattern: './karma.test.bundle.js' }

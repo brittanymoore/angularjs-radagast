@@ -17,7 +17,7 @@ import RadagastModule from './radagast/radagast.module';
 const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [ uiRouter, RadagastModule ])
-    .component('myApp', AppComponent)
+    .component('appRoot', AppComponent)
     .component('step1', Step1Component)
     .component('step2', Step2Component)
     .config(routes.config);
